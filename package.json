@@ -1,0 +1,13 @@
+{
+  "name": "travelfix",
+  "version": "1.0.0",
+  "description": "TravelFix - Travel & Freelancer Platform",
+  "scripts": {
+    "dev": "npx serve . -p 3000 --no-clipboard",
+    "start": "npx serve . -p 3000 --no-clipboard",
+    "build": "echo No build step needed for static project"
+  },
+  "keywords": ["travel", "freelancer", "marketplace"],
+  "author": "",
+  "license": "ISC"
+}

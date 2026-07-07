@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Bantul Creative Village</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  
+  <div class="admin-layout">
+    
+    <!-- ══ TASK 1: SIDEBAR NAVIGATION ══════════════════════════════ -->
+    <aside class="admin-sidebar" id="admin-sidebar" role="navigation" aria-label="Admin Sidebar">
+      
+      <div class="admin-sidebar-header">
+        <a href="index.html" class="admin-sidebar-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+          Bantul Creative
+        </a>
+      </div>
+
+      <nav class="admin-sidebar-nav">
+        <a href="admin-dashboard.html" class="admin-nav-item" data-target="dashboard">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+            Dashboard
+          </div>
+        </a>
+
+        <a href="admin-users.html" class="admin-nav-item" data-target="users">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Semua Pengguna
+          </div>
+        </a>
+
+        <a href="admin-projects.html" class="admin-nav-item active" data-target="projects">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Semua Proyek
+          </div>
+        </a>
+
+        <a href="admin-umkm.html" class="admin-nav-item" data-target="umkm">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Manajemen UMKM
+          </div>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="#" class="admin-nav-item">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Pengaturan
+          </div>
+        </a>
+        <a href="login.html" class="admin-nav-item js-logout-link">
+          <div class="admin-nav-left">
+            <svg class="admin-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Logout
+          </div>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- ══ MAIN CONTENT ════════════════════════════════════════ -->
+    <main class="admin-main">
+      <button type="button" class="admin-menu-toggle" id="admin-sidebar-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="admin-sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      
+
+      <!-- Projects View -->
+      <div id="admin-view-projects" class="admin-view" style="display:block;">
+        <div class="admin-view-header">
+          <h1 class="admin-view-title">Semua Proyek</h1>
+          <div class="admin-filters">
+            <input type="search" id="admin-search-projects" class="search-input" placeholder="Cari judul..." style="width:250px;">
+            <select id="admin-filter-status" class="select-filter">
+              <option value="">Semua Status</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Submitted">Submitted</option>
+              <option value="Completed">Completed</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Judul Proyek</th>
+                <th>Dibuat Oleh</th>
+                <th>Status</th>
+                <th>Pelamar</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="admin-projects-table">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      </main>
+  </div>
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer id="global-footer" role="contentinfo">
+    <div class="container">
+      <div class="global-footer-top">
+        <!-- Column 1 (Brand) -->
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span class="brand-text">Bantul Creative</span>
+          </div>
+          <p class="brand-desc">Menghubungkan talenta digital dengan warisan budaya Bantul untuk dampak nyata.</p>
+        </div>
+
+        <!-- Column 2 (Tautan Cepat) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Tautan Cepat</h4>
+          <ul class="footer-links">
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="ai-match.html">AI Talent Match</a></li>
+            <li><a href="trail-map.html">Trail Map</a></li>
+            <li><a href="portfolio.html">Impact Portfolio</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 (Bantuan & Legal) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Bantuan &amp; Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 (Sosial Media) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Sosial Media</h4>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l11.985-8.71C23.517 2.273 21.94 1 20 1H4C2.06 1 .483 2.273.015 4.004L12 12.713zm0 2.574L0 6.577V20c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V6.577l-12 8.71z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="global-footer-bottom">
+        <p>&copy; 2026 Bantul Creative. Semua hak dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ MODALS CONTAINER ════════════════════════════ -->
+  <div id="project-detail-backdrop" class="detail-backdrop" hidden aria-modal="true" role="dialog" aria-labelledby="pdm-title">
+    <div class="detail-modal">
+      <div class="dm-header">
+        <div class="dm-header-info">
+          <h2 class="dm-title" id="pdm-title">Judul Proyek</h2>
+          <div class="dm-subtitle" id="pdm-subtitle">Lokasi · Info</div>
+        </div>
+        <button class="dm-close-btn" aria-label="Tutup modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="dm-body">
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Keterangan Proyek
+          </span>
+          <p class="dm-section-text" id="pdm-description">—</p>
+        </div>
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Syarat &amp; Ketentuan
+          </span>
+          <p class="dm-section-text" id="pdm-requirements">—</p>
+        </div>
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.96-4.67A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.96-4.67A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+            Skill yang Dibutuhkan
+          </span>
+          <div class="dm-pills" id="pdm-skills"></div>
+        </div>
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Range Harga
+          </span>
+          <div class="dm-price-block">
+            <span class="dm-price-val" id="pdm-price">Rp —</span>
+          </div>
+        </div>
+      </div>
+      <div class="dm-footer dm-footer-aligned">
+        <button class="dm-btn-primary dm-btn-action" id="btn-ambil-proyek" style="display:none;">Ambil Proyek</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-container"></div>
+  <script src="js/data.js"></script>
+  <script src="js/db.js?v=15"></script>
+  <script src="js/components.js?v=2"></script>
+  <script src="js/app.js?v=22"></script>
+</body>
+</html>

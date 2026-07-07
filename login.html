@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk — Bantul Creative Village Freelancer Trail</title>
+  <meta name="description" content="Masuk ke platform Bantul Creative Village. Temukan proyek lokal, kembangkan portfolio, dan berdampak nyata bagi budaya daerah." />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+
+  <!-- ══ BACKGROUND DECOR ══════════════════════════════════ -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+  </div>
+
+  <!-- ══ LOGIN CARD ════════════════════════════════════════ -->
+  <div class="login-card" role="main">
+
+    <!-- ── LEFT PANEL (Branding) ─────────────────────────── -->
+    <aside class="login-left" aria-label="Informasi platform">
+
+      <!-- Decorative circles (inside green panel) -->
+      <div class="left-decor" aria-hidden="true">
+        <div class="left-circle left-circle-1"></div>
+        <div class="left-circle left-circle-2"></div>
+        <div class="left-circle left-circle-3"></div>
+        <div class="left-circle left-circle-4"></div>
+      </div>
+
+      <!-- Logo -->
+      <div class="left-logo">
+        <div class="left-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="left-logo-text">
+          <span class="left-logo-brand">Bantul Creative</span>
+          <span class="left-logo-sub">Village Freelancer Trail</span>
+        </div>
+      </div>
+
+      <!-- Headline -->
+      <div class="left-body">
+        <h1 class="left-headline">Wujudkan Potensi&nbsp;Kreatifmu.</h1>
+        <p class="left-desc">
+          Platform freelancer komunitas Bantul — temukan proyek lokal,
+          kembangkan portfolio, dan berdampak nyata bagi budaya daerah.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="left-stats" aria-label="Statistik platform">
+        <div class="stat-item">
+          <span class="stat-value">120+</span>
+          <span class="stat-label">Freelancer</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">48</span>
+          <span class="stat-label">Proyek Aktif</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">15</span>
+          <span class="stat-label">Komunitas</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── RIGHT PANEL (Form) ─────────────────────────────── -->
+    <section class="login-right" aria-label="Form masuk">
+
+      <!-- Header -->
+      <div class="form-header">
+        <h2 class="form-title">Selamat Datang!</h2>
+        <p class="form-subtitle">Masuk ke akun Bantul Creative Anda</p>
+      </div>
+
+      <!-- Form -->
+      <form id="login-form" novalidate>
+
+        <!-- Email / Nama Bisnis (UMKM dapat login dengan salah satunya) -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email atau Nama Bisnis</label>
+          <div class="input-wrap">
+            <span class="input-icon-left" aria-hidden="true">
+              <!-- Mail icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="nama@contoh.com atau Nama Bisnis (UMKM)"
+              autocomplete="username"
+              required
+              aria-label="Email atau Nama Bisnis"
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon-left" aria-hidden="true">
+              <!-- Lock icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input has-right-icon"
+              placeholder="Masukkan password Anda"
+              autocomplete="current-password"
+              required
+              aria-label="Password"
+            />
+            <!-- Eye toggle button -->
+            <button
+              type="button"
+              id="eye-toggle"
+              class="input-icon-right"
+              aria-label="Tampilkan atau sembunyikan password"
+              tabindex="0"
+            >
+              <!-- Eye icon (default: visible = password hidden) -->
+              <svg id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <!-- Eye-off icon (hidden by default) -->
+              <svg id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   style="display:none;">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Options row -->
+        <div class="form-options">
+          <label class="checkbox-label" for="remember">
+            <input type="checkbox" id="remember" name="remember" />
+            Ingat saya
+          </label>
+          <a href="#" class="forgot-link" id="forgot-link">Lupa password?</a>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="btn-submit" class="btn-submit">
+          Masuk
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <!-- Divider -->
+        <div class="form-divider" aria-hidden="true">
+          <span class="divider-text">atau</span>
+        </div>
+
+        <!-- Sign-up footer -->
+        <p class="form-footer">
+          Belum punya akun?
+          <a href="register.html" id="register-link">Daftar di sini</a>
+        </p>
+
+      </form>
+    </section>
+
+  </div><!-- /login-card -->
+
+  <script src="js/db.js?v=15"></script>
+  <script src="js/auth.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Hanya service "web" (Apache+PHP) -- MySQL & phpMyAdmin sudah ada di
+# container lain, bergabung lewat network Docker "mybridge" yang sudah ada.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      container_name: Travelfix-Web
+    ports:
+      # Host:Container -- 8080 dipakai (bukan 80) supaya tidak bentrok dengan
+      # Apache/XAMPP asli yang mungkin masih jalan di komputer yang sama.
+      - "${WEB_PORT:-8088}:80"
+    volumes:
+      # Bind-mount source code -- cocok untuk pengembangan lokal (edit file
+      # langsung terasa tanpa rebuild image). Untuk deploy produksi sungguhan,
+      # ganti ini dengan `COPY . /var/www/html` di Dockerfile agar image jadi
+      # immutable, lalu hapus baris volume ini.
+      - ./:/var/www/html
+    # Kredensial database dibaca dari .env (dipakai api/config.php lewat
+    # getenv(), lihat loadEnvFile() di sana).
+    env_file:
+      - .env
+    networks:
+      - mybridge
+    restart: unless-stopped
+
+networks:
+  # "mybridge" TIDAK dibuat oleh file ini -- diasumsikan sudah ada (dipakai
+  # bersama oleh container MySQL & phpMyAdmin Anda). Kalau nama networknya
+  # ternyata beda, atau belum pernah dibuat sebagai network custom, cek dulu:
+  #   docker network ls
+  #   docker inspect <nama_container_mysql> --format "{{json .NetworkSettings.Networks}}"
+  mybridge:
+    external: true

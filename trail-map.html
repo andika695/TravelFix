@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Trail Map — Bantul Creative Village</title>
+  <meta name="description" content="Jelajahi peta kreatif Bantul sambil berkarya. Temukan lokasi pengrajin, seniman, dan komunitas kreatif di seluruh Bantul." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+
+  <!-- Leaflet.js (peta OpenStreetMap) — gratis, open-source, tanpa API key -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ════════════════════════════════════════ -->
+  <div id="navbar"></div>
+
+  <!-- ══ PAGE ══════════════════════════════════════════════ -->
+  <main class="page-wrapper">
+    <div class="container">
+
+      <!-- Sub-header -->
+      <section class="subheader" aria-label="Trail Map Header">
+        <h1>Creative Trail Map</h1>
+        <p>Jelajahi Bantul sambil berkarya — temukan komunitas kreatif, pengrajin, dan seniman lokal di setiap sudut.</p>
+      </section>
+
+      <!-- Map Visual: Peta interaktif Leaflet.js (OpenStreetMap) -->
+      <section class="map-section" aria-label="Peta interaktif Kabupaten Bantul">
+        <!--
+          Wadah peta Leaflet. Diinisialisasi oleh initTrailLeafletMap() di
+          js/app.js — dikunci ke wilayah Kabupaten Bantul (lihat komentar
+          pada fungsi tsb), BELUM ada marker/penanda lokasi (inisialisasi dasar).
+        -->
+        <div id="trail-leaflet-map" class="leaflet-map-container" aria-label="Peta interaktif wilayah Kabupaten Bantul"></div>
+      </section>
+
+      <!-- Location Cards Grid -->
+      <div class="section-title-row">
+        <h2 class="section-title">Semua Lokasi Kreatif</h2>
+        <span class="section-count">6 lokasi ditemukan</span>
+      </div>
+
+      <div class="trail-grid" id="trail-grid" role="list" aria-label="Daftar lokasi kreatif">
+        <!-- Rendered by app.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ PORTFOLIO DETAIL MODAL ═════════════════════════════ -->
+  <div class="detail-backdrop" id="portfolio-detail-backdrop" hidden aria-modal="true" role="dialog" aria-labelledby="pfdm-title">
+    <div class="detail-modal">
+      <div class="dm-header">
+        <div class="dm-header-info">
+          <h2 class="dm-title" id="pfdm-title">Judul Proyek</h2>
+          <div class="dm-subtitle" id="pfdm-subtitle">Freelancer · Tanggal</div>
+        </div>
+        <button class="dm-close-btn" aria-label="Tutup modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="dm-body">
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Detail Pekerjaan
+          </span>
+          <p class="dm-section-text" id="pfdm-description">—</p>
+        </div>
+        <div class="dm-impact-box">
+          <div class="dm-impact-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Dampak Nyata
+          </div>
+          <p class="dm-section-text" id="pfdm-impact-text" style="margin-bottom:0.75rem; color: var(--accent-green-dk);">—</p>
+          <div class="dm-impact-metrics" id="pfdm-metrics"></div>
+        </div>
+      </div>
+      <div class="dm-footer">
+        <button class="dm-btn-outline dm-close-footer-btn">Tutup</button>
+      </div>
+    </div>
+  </div><!-- /portfolio-detail-modal -->
+
+  <div class="sm-backdrop" id="skill-modal-backdrop" hidden aria-hidden="true"></div>
+
+  <div class="sm-modal" id="skill-modal" role="dialog" aria-modal="true"
+       aria-labelledby="sm-modal-title" hidden>
+
+    <!-- ── STEP 1: Skills ───────────────────────────────── -->
+    <div id="skill-step-1">
+
+      <!-- Progress -->
+      <div class="sm-progress-wrap">
+        <span class="sm-badge">Update Skill &amp; Minat</span>
+        <div class="sm-progress-bar" aria-label="Langkah 1 dari 2">
+          <div class="sm-progress-fill" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="sm-header">
+        <span class="sm-header-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46
+                     2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58
+                     2.5 2.5 0 0 1 1.96-4.67A2.5 2.5 0 0 1 9.5 2Z"/>
+            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46
+                     2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58
+                     2.5 2.5 0 0 0-1.96-4.67A2.5 2.5 0 0 0 14.5 2Z"/>
+          </svg>
+        </span>
+        <h2 class="sm-title" id="sm-modal-title">Pilih Skill yang Kamu Kuasai</h2>
+      </div>
+
+      <!-- Pill grid -->
+      <div class="sm-pill-grid" id="skill-pill-grid" role="group"
+           aria-label="Pilih skill">
+        <button class="skill-pill skill-pill--active" aria-pressed="true">Branding</button>
+        <button class="skill-pill skill-pill--active" aria-pressed="true">Graphic Design</button>
+        <button class="skill-pill skill-pill--active" aria-pressed="true">Social Media</button>
+        <button class="skill-pill" aria-pressed="false">Content Writing</button>
+        <button class="skill-pill" aria-pressed="false">Video Editing</button>
+        <button class="skill-pill" aria-pressed="false">Photography</button>
+        <button class="skill-pill" aria-pressed="false">UI/UX Design</button>
+        <button class="skill-pill" aria-pressed="false">Copywriting</button>
+        <button class="skill-pill" aria-pressed="false">Web Design</button>
+        <button class="skill-pill" aria-pressed="false">Illustration</button>
+      </div>
+
+      <!-- Hint -->
+      <p class="sm-hint">Pilih minimal 3 skill yang kamu kuasai</p>
+
+      <!-- CTA -->
+      <button class="sm-btn-primary" id="skill-btn-next">
+        Lanjut ke Minat
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+    </div><!-- /step-1 -->
+
+    <!-- ── STEP 2: Interests ─────────────────────────────── -->
+    <div id="skill-step-2" hidden>
+
+      <!-- Progress -->
+      <div class="sm-progress-wrap">
+        <span class="sm-badge">Langkah 2 dari 2</span>
+        <div class="sm-progress-bar" aria-label="Langkah 2 dari 2, selesai">
+          <div class="sm-progress-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="sm-header">
+        <span class="sm-header-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+        </span>
+        <h2 class="sm-title">Pilih Minat &amp; Bidang yang Kamu Sukai</h2>
+      </div>
+
+      <!-- Pill grid -->
+      <div class="sm-pill-grid" id="interest-pill-grid" role="group"
+           aria-label="Pilih minat">
+        <button class="interest-pill interest-pill--active" aria-pressed="true">Pariwisata</button>
+        <button class="interest-pill interest-pill--active" aria-pressed="true">Budaya Lokal</button>
+        <button class="interest-pill" aria-pressed="false">Kuliner</button>
+        <button class="interest-pill" aria-pressed="false">Kerajinan</button>
+        <button class="interest-pill" aria-pressed="false">Fashion</button>
+        <button class="interest-pill" aria-pressed="false">Digital Marketing</button>
+        <button class="interest-pill" aria-pressed="false">Edukasi</button>
+        <button class="interest-pill" aria-pressed="false">Lingkungan</button>
+      </div>
+
+      <!-- Hint -->
+      <p class="sm-hint">Pilih minimal 2 minat untuk rekomendasi yang lebih akurat</p>
+
+      <!-- CTAs -->
+      <button class="sm-btn-primary" id="skill-btn-save">Update &amp; Simpan</button>
+      <button class="sm-btn-skip" id="skill-btn-skip">Lewati untuk nanti</button>
+
+    </div><!-- /step-2 -->
+
+  </div><!-- /sm-modal -->
+  <!-- /SKILL MODAL -->
+
+
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer id="global-footer" role="contentinfo">
+    <div class="container">
+      <div class="global-footer-top">
+        <!-- Column 1 (Brand) -->
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span class="brand-text">Bantul Creative</span>
+          </div>
+          <p class="brand-desc">Menghubungkan talenta digital dengan warisan budaya Bantul untuk dampak nyata.</p>
+        </div>
+
+        <!-- Column 2 (Tautan Cepat) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Tautan Cepat</h4>
+          <ul class="footer-links">
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="ai-match.html">AI Talent Match</a></li>
+            <li><a href="trail-map.html">Trail Map</a></li>
+            <li><a href="portfolio.html">Impact Portfolio</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 (Bantuan & Legal) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Bantuan &amp; Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 (Sosial Media) -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Sosial Media</h4>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l11.985-8.71C23.517 2.273 21.94 1 20 1H4C2.06 1 .483 2.273.015 4.004L12 12.713zm0 2.574L0 6.577V20c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3V6.577l-12 8.71z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="global-footer-bottom">
+        <p>&copy; 2026 Bantul Creative. Semua hak dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet.js — harus dimuat SEBELUM js/app.js karena initTrailLeafletMap()
+       memakai variabel global "L" yang disediakan library ini -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <script src="js/data.js"></script>
+  <script src="js/components.js?v=2"></script>
+  <script src="js/app.js?v=22"></script>
+  <script src="js/profile-modal.js"></script>
+  <script src="js/db.js?v=15"></script>
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

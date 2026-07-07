@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talent AI — Bantul Creative Village</title>
+  <meta name="description" content="Talent AI: Temukan freelancer terbaik untuk proyek Anda." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ════════════════════════════════════════ -->
+  <div id="navbar"></div>
+
+  <!-- ══ PAGE ══════════════════════════════════════════════ -->
+  <main class="page-wrapper">
+    <div class="container">
+
+      <!-- AI Banner -->
+      <section class="ai-banner" aria-labelledby="ai-banner-title">
+        <div class="ai-banner-inner">
+          <div class="ai-banner-content">
+            <div class="ai-banner-eyebrow">
+              <span class="dot"></span> Powered by AI
+            </div>
+            <h1 id="ai-banner-title">Talent AI</h1>
+            <p>Sistem AI kami menganalisis keahlian dan minat seluruh freelancer di jaringan kami untuk menemukan kandidat paling relevan dengan proyek-proyek aktif Anda.</p>
+            <div class="ai-banner-pills">
+              <span class="ai-pill"><span class="dot"></span> 92% rata-rata kecocokan</span>
+              <span class="ai-pill"><span class="dot"></span> 0 rekomendasi talenta</span>
+              <span class="ai-pill"><span class="dot"></span> Diperbarui hari ini</span>
+            </div>
+          </div>
+          <!-- Monochromatic Robot Icon -->
+          <div class="ai-banner-graphic" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="25" y="35" width="50" height="42" rx="8"/>
+              <rect x="35" y="48" width="10" height="10" rx="3"/>
+              <rect x="55" y="48" width="10" height="10" rx="3"/>
+              <line x1="50" y1="20" x2="50" y2="35"/>
+              <circle cx="50" cy="17" r="5"/>
+              <rect x="18" y="48" width="7" height="18" rx="3"/>
+              <rect x="75" y="48" width="7" height="18" rx="3"/>
+              <rect x="35" y="77" width="10" height="12" rx="3"/>
+              <rect x="55" y="77" width="10" height="12" rx="3"/>
+              <path d="M42 65 Q50 72 58 65"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Freelancer List -->
+      <div class="section-title-row">
+        <h2 class="section-title">Rekomendasi Talenta</h2>
+        <span class="section-count">0 talenta ditemukan</span>
+      </div>
+
+      <div class="ai-match-list" id="talent-ai-list" role="list" aria-label="Daftar rekomendasi talenta">
+        <!-- Rendered by app.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ FREELANCER DETAIL MODAL ═════════════════════════════ -->
+  <div class="detail-backdrop" id="project-detail-backdrop" hidden aria-modal="true" role="dialog" aria-labelledby="pdm-title">
+    <div class="detail-modal">
+      <div class="dm-header">
+        <div class="dm-header-info">
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <div id="pdm-profile-avatar" style="width:50px; height:50px; border-radius:50%; background:var(--card-bg); border: 2px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem; color:var(--primary-color);"></div>
+            <div>
+              <h2 class="dm-title" id="pdm-profile-name">Nama Freelancer</h2>
+              <div class="dm-subtitle" id="pdm-profile-role">Freelancer</div>
+            </div>
+          </div>
+        </div>
+        <button class="dm-close-btn" aria-label="Tutup modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="dm-body">
+        <div class="dm-section" id="pdm-profile-section-bio">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Bio &amp; Pengalaman
+          </span>
+          <p class="dm-section-text" id="pdm-profile-bio">—</p>
+        </div>
+        
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.96-4.67A2.5 2.5 0 0 1 9.5 2Z"/></svg>
+            Skills
+          </span>
+          <div class="dm-pills" id="pdm-profile-skills"></div>
+        </div>
+
+        <div class="dm-section">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            Minat
+          </span>
+          <div class="dm-pills" id="pdm-profile-interests"></div>
+        </div>
+
+        <!-- Riwayat Proyek — diisi live oleh showFreelancerProfileModal() dari
+             api/get_freelancer_history.php, memakai renderFreelancerHistoryList()
+             (fungsi bersama yang sama dipakai modal "Lihat Riwayat" di daftar
+             pelamar, supaya markup & logikanya tidak terduplikasi). -->
+        <div class="dm-section" id="pdm-profile-section-history">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Riwayat Proyek
+          </span>
+          <p class="dm-section-text" id="pdm-profile-history-summary" style="margin-bottom: 0.5rem;"></p>
+          <div id="pdm-profile-history-list" style="display:flex; flex-direction:column; gap:0.6rem;"></div>
+        </div>
+
+        <div class="dm-section" id="pdm-profile-section-portfolio">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Portfolio
+          </span>
+          <a href="#" class="dm-section-text" id="pdm-profile-portfolio" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color);">Lihat Portfolio</a>
+        </div>
+
+        <div class="dm-section" id="pdm-profile-section-contact">
+          <span class="dm-section-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.91-1.91a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+            Kontak
+          </span>
+          <div class="dm-section-text" id="pdm-profile-contact"></div>
+        </div>
+      </div>
+      <!-- Tombol "Pilih & Setujui" sengaja TIDAK ada di halaman ini --
+           Talent AI murni menjelajah talenta (tidak terikat proyek/lamaran
+           tertentu), beda dgn modal serupa di umkm-projects.html (Kelola
+           Proyek) yang memang meninjau pelamar utk SATU proyek aktif. -->
+    </div>
+  </div><!-- /detail-modal -->
+
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer id="global-footer" role="contentinfo">
+    <div class="container">
+      <div class="global-footer-top">
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span class="brand-text">Bantul Creative</span>
+          </div>
+          <p class="brand-desc">Menghubungkan talenta digital dengan warisan budaya Bantul untuk dampak nyata.</p>
+        </div>
+      </div>
+      <div class="global-footer-bottom">
+        <p>&copy; 2026 Bantul Creative. Semua hak dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js?v=2"></script>
+  <script src="js/app.js?v=22"></script>
+  <script src="js/profile-modal.js"></script>
+  <script src="js/db.js?v=15"></script>
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>
