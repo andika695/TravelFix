@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      container_name: Travelfix-Web
+    container_name: Travelfix-Web
     ports:
       # Host:Container -- 8080 dipakai (bukan 80) supaya tidak bentrok dengan
       # Apache/XAMPP asli yang mungkin masih jalan di komputer yang sama.
