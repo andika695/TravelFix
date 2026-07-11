@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring
+RUN docker network create -d bridge mybridge
 
 # Timezone Indonesia (WIB) -- proyek ini menghitung tanggal deadline/jadwal.
 RUN ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
